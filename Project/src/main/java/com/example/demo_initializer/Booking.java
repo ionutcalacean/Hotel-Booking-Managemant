@@ -1,6 +1,18 @@
 package com.example.demo_initializer;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Booking {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private long id;
+
     private String nameOfHotel;
     private double price;
     private int nbOfNights;
@@ -42,4 +54,7 @@ public class Booking {
         return nbOfNights * price;
     }
 
+    public long getId() {
+        return id;
+    }
 }
