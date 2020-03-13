@@ -25,17 +25,18 @@ public class BookingController {
         return bookingRepository.findAll();
     }
 
-    /*@RequestMapping(value = "/getlowcost/{price}",method = RequestMethod.GET)
+    @RequestMapping(value = "/getlowcost/{price}",method = RequestMethod.GET)
     public List<Booking> getLowCost(@PathVariable double price)
     {
-        return bookings.stream().filter(x->x.getPrice() <= price).collect(Collectors.toList());
+        return bookingRepository.findByPriceLessThan(price);
     }
+
     @RequestMapping(value = "/create",method=RequestMethod.POST)
     public List<Booking> create(@RequestBody Booking booking)
     {
-        bookings.add(booking);
+        bookingRepository.save(booking);
 
-        return bookings;
-    }*/
+        return bookingRepository.findAll();
+    }
 
 }
