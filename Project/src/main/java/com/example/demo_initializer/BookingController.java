@@ -32,9 +32,27 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/create",method=RequestMethod.POST)
-    public List<Booking> create(@RequestBody Booking booking)
+    public @ResponseBody   List<Booking> create(@RequestParam String hotelName, @RequestParam double price,@RequestParam int nbOfNight )
     {
+        Booking booking=new Booking(hotelName,price,nbOfNight);
+
         bookingRepository.save(booking);
+
+        return bookingRepository.findAll();
+    }
+
+    @RequestMapping(value= "/delete/{id}",method = RequestMethod.GET)
+    public List<Booking> delete(@PathVariable long id)
+    {
+        bookingRepository.deleteById(id);
+
+        return bookingRepository.findAll();
+    }
+
+    @GetMapping("/deleteall")
+    public List<Booking> deleteAll()
+    {
+        bookingRepository.deleteAll();
 
         return bookingRepository.findAll();
     }
