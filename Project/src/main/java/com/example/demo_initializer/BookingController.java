@@ -1,11 +1,10 @@
 package com.example.demo_initializer;
 
+import com.example.demo_initializer.Repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value="/booking")
@@ -32,10 +31,8 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/create",method=RequestMethod.POST)
-    public @ResponseBody   List<Booking> create(@RequestParam String hotelName, @RequestParam double price,@RequestParam int nbOfNight )
+    public List<Booking> create(@RequestBody Booking booking )
     {
-        Booking booking=new Booking(hotelName,price,nbOfNight);
-
         bookingRepository.save(booking);
 
         return bookingRepository.findAll();
