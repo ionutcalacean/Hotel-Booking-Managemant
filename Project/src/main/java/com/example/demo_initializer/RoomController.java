@@ -30,7 +30,7 @@ public class RoomController {
 
     @PostMapping(value="/create")
     public @ResponseBody  List<Room> create(@RequestParam String roomtype,@RequestParam int price, @RequestParam int floor, @RequestParam int roomNb, @RequestParam int capacity,
-                                        @RequestParam(defaultValue= "3") int hours)
+                                       @RequestParam(defaultValue = "true") boolean free, @RequestParam(defaultValue= "3") int hours)
     {
         RoomFactory myRoomFactory=new RoomFactory();
         Room newRoom=myRoomFactory.getRoom(roomtype);
@@ -39,6 +39,7 @@ public class RoomController {
         newRoom.setFloor(floor);
         newRoom.setRoomNb(roomNb);
         newRoom.setCapacity(capacity);
+        newRoom.setFree(free);
         if(newRoom instanceof ConferenceRoom)
         {
             ((ConferenceRoom) newRoom).setHours(hours);

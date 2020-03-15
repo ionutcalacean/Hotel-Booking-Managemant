@@ -12,15 +12,18 @@ public class Room {
     private long roomId;
     private int pricePerNight;
     private int floor;
+    @Column(unique = true)
     private int roomNb;
     private int capacity;
+    private boolean free;
 
-    public Room(long roomId, int pricePerNight, int floor, int roomNb, int capacity) {
+    public Room(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free) {
         this.roomId = roomId;
         this.pricePerNight = pricePerNight;
         this.floor = floor;
         this.roomNb = roomNb;
         this.capacity = capacity;
+        this.free=free;
     }
 
     public Room() {
@@ -62,5 +65,11 @@ public class Room {
         this.capacity = capacity;
     }
 
+    public boolean isFree() {
+        return free;
+    }
 
+    public void setFree(boolean free) {
+        this.free = free;
+    }
 }

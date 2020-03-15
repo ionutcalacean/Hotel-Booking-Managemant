@@ -9,8 +9,8 @@ public class RegularRoom extends Room {
 
     private boolean matrimonialBad;
 
-    public RegularRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity, boolean matrimonialBad) {
-        super(roomId, pricePerNight, floor, roomNb, capacity);
+    public RegularRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, boolean matrimonialBad) {
+        super(roomId, pricePerNight, floor, roomNb, capacity,free);
         this.matrimonialBad = matrimonialBad;
     }
 
