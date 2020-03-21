@@ -6,10 +6,10 @@ import com.example.demo_initializer.Repositories.BookingRepository;
 import com.example.demo_initializer.Repositories.RoomRepository;
 import com.example.demo_initializer.Repositories.UserRepository;
 import com.example.demo_initializer.components.Admin;
+import com.example.demo_initializer.components.Booking;
 import com.example.demo_initializer.components.Room;
 import com.example.demo_initializer.components.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

@@ -50,7 +50,7 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
-    @GetMapping(value="/deleteall")
+    @DeleteMapping(value="/deleteall")
     public List<Room> deleteall()
     {
         roomRepository.deleteAll();

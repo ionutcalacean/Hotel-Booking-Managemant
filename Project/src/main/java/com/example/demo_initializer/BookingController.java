@@ -1,6 +1,7 @@
 package com.example.demo_initializer;
 
 import com.example.demo_initializer.Repositories.BookingRepository;
+import com.example.demo_initializer.components.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,7 @@
 package com.example.demo_initializer.components;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,14 +18,20 @@ public class Room {
     private int roomNb;
     private int capacity;
     private boolean free;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="hotelId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Hotel hotel;
 
-    public Room(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free) {
+
+    public Room(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free,Hotel hotel) {
         this.roomId = roomId;
         this.pricePerNight = pricePerNight;
         this.floor = floor;
         this.roomNb = roomNb;
         this.capacity = capacity;
         this.free=free;
+        this.hotel=hotel;
     }
 
     public Room() {

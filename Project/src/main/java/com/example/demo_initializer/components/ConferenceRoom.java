@@ -9,8 +9,8 @@ public class ConferenceRoom extends Room {
 
     private int hours;
 
-    public ConferenceRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours) {
-        super(roomId, pricePerNight, floor, roomNb, capacity,free);
+    public ConferenceRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours,Hotel hotel) {
+        super(roomId, pricePerNight, floor, roomNb, capacity,free,hotel);
         this.hours = hours;
     }
 
