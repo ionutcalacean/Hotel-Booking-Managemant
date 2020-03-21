@@ -7,21 +7,32 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Conference")
 public class ConferenceRoom extends Room {
 
-    private int hours;
+    private boolean projector;
+    private boolean leatherSeats;
 
-    public ConferenceRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours,Hotel hotel) {
+    public ConferenceRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours,Hotel hotel,boolean projector, boolean leatherSeats) {
         super(roomId, pricePerNight, floor, roomNb, capacity,free,hotel);
-        this.hours = hours;
+        this.projector=projector;
+        this.leatherSeats=leatherSeats;
     }
 
     public ConferenceRoom() {
     }
 
-    public int getHours() {
-        return hours;
+
+    public void setProjector(boolean projector) {
+        this.projector = projector;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
+    public void setLeatherSeats(boolean leatherSeats) {
+        this.leatherSeats = leatherSeats;
+    }
+
+    public boolean isProjector() {
+        return projector;
+    }
+
+    public boolean isLeatherSeats() {
+        return leatherSeats;
     }
 }

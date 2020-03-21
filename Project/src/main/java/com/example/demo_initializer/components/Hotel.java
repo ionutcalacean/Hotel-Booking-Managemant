@@ -29,6 +29,9 @@ public class Hotel {
         return hotelId;
     }
 
+    public void setHotelId(long hotelId) {
+        this.hotelId = hotelId;
+    }
 
     public String getHotelName() {
         return hotelName;

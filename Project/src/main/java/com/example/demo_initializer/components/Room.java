@@ -41,6 +41,18 @@ public class Room {
         return roomId;
     }
 
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
     public int getPricePerNight() {
         return pricePerNight;
     }
