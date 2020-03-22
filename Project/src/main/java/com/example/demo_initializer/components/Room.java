@@ -24,8 +24,7 @@ public class Room {
     private Hotel hotel;
 
 
-    public Room(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free,Hotel hotel) {
-        this.roomId = roomId;
+    public Room( int pricePerNight, int floor, int roomNb, int capacity,boolean free,Hotel hotel) {
         this.pricePerNight = pricePerNight;
         this.floor = floor;
         this.roomNb = roomNb;

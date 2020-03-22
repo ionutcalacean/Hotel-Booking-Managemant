@@ -11,8 +11,8 @@ public class PremiumRoom extends Room {
     private boolean roomService;
     private boolean spa;
 
-    public PremiumRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, boolean balcony, boolean roomService, boolean spa,Hotel hotel) {
-        super(roomId, pricePerNight, floor, roomNb, capacity,free,hotel);
+    public PremiumRoom(int pricePerNight, int floor, int roomNb, int capacity,boolean free, boolean balcony, boolean roomService, boolean spa,Hotel hotel) {
+        super( pricePerNight, floor, roomNb, capacity,free,hotel);
         this.balcony = balcony;
         this.roomService = roomService;
         this.spa = spa;

@@ -10,8 +10,8 @@ public class ConferenceRoom extends Room {
     private boolean projector;
     private boolean leatherSeats;
 
-    public ConferenceRoom(long roomId, int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours,Hotel hotel,boolean projector, boolean leatherSeats) {
-        super(roomId, pricePerNight, floor, roomNb, capacity,free,hotel);
+    public ConferenceRoom( int pricePerNight, int floor, int roomNb, int capacity,boolean free, int hours,Hotel hotel,boolean projector, boolean leatherSeats) {
+        super( pricePerNight, floor, roomNb, capacity,free,hotel);
         this.projector=projector;
         this.leatherSeats=leatherSeats;
     }
