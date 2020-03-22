@@ -38,4 +38,5 @@ Am ales impartirea functionalitatii aplicatiei in 2 mari parti: partea utilizato
 
 ## Diagrama bazei de date
 
+![database](https://user-images.githubusercontent.com/49992235/77261119-def85e00-6c94-11ea-9357-47297dd4271c.png)
 
