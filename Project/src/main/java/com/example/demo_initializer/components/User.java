@@ -2,6 +2,9 @@ package com.example.demo_initializer.components;
 
 import javax.persistence.*;
 
+/**
+ * Clasa pentru date in persistenta logica cu tabela User
+ */
 @Entity
 @Table(name="User")
 public class User {

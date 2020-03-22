@@ -21,11 +21,20 @@ public class HotelController {
         this.hotelRepository = hotelRepository;
     }
 
+    /**
+     * preluarea tuturor hotelurilor
+     * @return lista cu toate hotelurile
+     */
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
     public List<Hotel> getall() {
         return hotelRepository.findAll();
     }
 
+    /**
+     * adaugarea unui hotel in baza de date
+     * @param hotel
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @PostMapping(value = "/create")
     public @ResponseBody
     ResponseEntity<String> create(@RequestBody Hotel hotel)
@@ -36,7 +45,12 @@ public class HotelController {
                 "Hotel added succesfull: "+ hotel.getHotelName()+" S!",
                 HttpStatus.OK);
     }
-
+    /**
+     * modificarea unui hotel
+     * @param hotel obiectul de modificat sub forma unui body Json
+     * @param id identificare hotel care se doreste modificat
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
+     */
     @PutMapping(value = "/update/{id}")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Hotel hotel , @PathVariable  Long id)
     {
@@ -59,6 +73,11 @@ public class HotelController {
 
     }
 
+    /**
+     * stergerea unui hotel dupa id
+     * @param id
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value= "/deletebyid/{id}")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
@@ -72,6 +91,10 @@ public class HotelController {
             return new ResponseEntity<>("Hotel not found, try other  hotel id!",HttpStatus.OK);
     }
 
+    /**
+     * stergerea tuturor hotelurilor
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value = "/deleteall")
     public @ResponseBody ResponseEntity<String> deleteall()
     {

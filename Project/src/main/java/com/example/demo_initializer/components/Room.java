@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+/**
+ * Clasa pentru date in persistenta logica cu tabela Room
+ */
 @Entity
 @Table(name= "Room")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)

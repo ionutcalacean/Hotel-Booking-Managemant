@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+/**
+ * Clasa pentru date in persistenta logica cu tabela Booking
+ */
 @Entity
 public class Booking {
 

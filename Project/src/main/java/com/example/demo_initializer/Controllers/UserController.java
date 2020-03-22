@@ -22,12 +22,25 @@ public class UserController {
         this.userRepository=userRepository;
     }
 
+    /**
+     * preluare lista cu utilzatorii
+     * @return lista
+     */
     @GetMapping(value="/getall")
     public List<User> getall()
     {
         return userRepository.findAll();
     }
 
+    /**
+     * crearea unui utiloztori cu parametrii de request din POST
+     * @param username
+     * @param password
+     * @param phone
+     * @param email
+     * @param city
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @PostMapping(value="/create")
     public @ResponseBody  ResponseEntity<String> create(@RequestParam String username, @RequestParam String password, @RequestParam String phone,
                                             @RequestParam String email, @RequestParam String city)
@@ -49,6 +62,12 @@ public class UserController {
                 HttpStatus.OK);
     }
 
+    /**
+     * modificare utilozator
+     * @param newUser body json cu detaliile noi
+     * @param username pentru utilizatorul care se modifica
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
+     */
     @PutMapping(value = "/update/{username}")
     public @ResponseBody ResponseEntity<String> update(@RequestBody User newUser, @PathVariable String username)
     {
@@ -72,6 +91,11 @@ public class UserController {
         }
     }
 
+    /**
+     * stergerea unui utilizator
+     * @param username pentru utilizatorul sters
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value= "/deletebyid/{username}")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable String username)
     {
@@ -85,7 +109,10 @@ public class UserController {
             return new ResponseEntity<>("User not found, try other username !",HttpStatus.OK);
     }
 
-
+    /**
+     * stergerea tuturor utilizatorilor
+     * @return
+     */
     @DeleteMapping(value="/deleteall")
     public @ResponseBody ResponseEntity<String> deleteall()
     {

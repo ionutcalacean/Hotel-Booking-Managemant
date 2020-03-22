@@ -23,6 +23,10 @@ public class RoomController {
         this.roomRepository=roomRepository;
     }
 
+    /**
+     * preluarea tuturor camerelor
+     * @return lista cu camerele
+     */
     @GetMapping(value="/getall")
     public List<Room> getAll()
     {
@@ -33,6 +37,12 @@ public class RoomController {
     public @ResponseBody  List<Room> create(@RequestParam String roomtype,@RequestParam int price, @RequestParam int floor, @RequestParam int roomNb, @RequestParam int capacity,
                                             @RequestParam(defaultValue = "true") boolean free, @RequestParam(defaultValue= "3") int hours)*/
 
+    /**
+     * crearea unei camere
+     * @param room body de tip json cu obiectul
+     * @param roomtype tipul camerei pentru Factory pattern
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @PostMapping(value="/create/{roomtype}")
     public @ResponseBody  List<Room> create(@RequestBody Room room, @PathVariable String roomtype)
     {
@@ -83,6 +93,12 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
+    /**
+     *  modificarea unei camere
+     * @param room noile detalii
+     * @param id pentru camera modificata
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
+     */
     @PutMapping(value = "/update/{id}")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Room room , @PathVariable  Long id) {
         Room foo = roomRepository.findById(id).orElse(null);
@@ -134,6 +150,11 @@ public class RoomController {
         }
     }
 
+    /**
+     * stergerea unei camere dupa id
+     * @param id pt camera stearsa
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value= "/deletebyid/{id}")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
@@ -147,6 +168,10 @@ public class RoomController {
             return new ResponseEntity<>("Room not found, try other  room id!",HttpStatus.OK);
     }
 
+    /**
+     * stergerea tutuor camerelor
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value="/deleteall")
     public @ResponseBody ResponseEntity<String> deleteall()
     {

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Clasa controller pentru Admini
+ */
 @RestController
 @RequestMapping(value="/admins")
 public class AdminController {
@@ -21,12 +24,22 @@ public class AdminController {
         this.adminRepository=adminRepository;
     }
 
+    /**
+     * metoda de tip get, pe server , prin accesare link localhost:8080/admins/getall
+     * @return lista cu toti adminii din baza de date
+     */
     @GetMapping(value="/getall")
     public List<Admin> getall()
     {
         return adminRepository.findAll();
     }
 
+    /**
+     *  creeaza un admin si il adauga in baza de date
+     * @param username  numele de utilizator pentru admin
+     * @param password parola pentru admin
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @PostMapping(value="/create")
     public @ResponseBody ResponseEntity<String> create(@RequestParam String username, @RequestParam String password)
     {
@@ -47,6 +60,12 @@ public class AdminController {
                 HttpStatus.OK);
     }
 
+    /**
+     * modificare detalii admin existent sau introducere daca nu exista
+     * @param newAdmin  obiect cu noile detalii
+     * @param username pentru admin-ul care se modifica
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
+     */
     @PutMapping(value = "/update/{username}")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Admin newAdmin, @PathVariable String username)
     {
@@ -67,7 +86,11 @@ public class AdminController {
         }
     }
 
-
+    /**
+     * stergerea unui utilizator existent dupa username
+     * @param username
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping("/deletebyid/{username}")
     public @ResponseBody ResponseEntity<String> deleteEmployee(@PathVariable String username) {
 
@@ -82,6 +105,10 @@ public class AdminController {
 
     }
 
+    /**
+     * Stergerea tuturor adminilor
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @DeleteMapping(value="/deleteall")
     public ResponseEntity<String> deleteall()
     {

@@ -22,6 +22,10 @@ public class BookingController {
     this.bookingRepository=bookingRepository;
     }
 
+    /**
+     * metoda pentru preliarea tuturor rezervarilor
+     * @return lista cu toate rezervarile existente in baza de date
+     */
     @RequestMapping(value="/getall",method= RequestMethod.GET)
     public List<Booking>getAll()
     {
@@ -29,12 +33,22 @@ public class BookingController {
         return bookingRepository.findAll();
     }
 
+    /**
+     * metoda preluare rezervari cu pret scazut
+     * @param price pretul de prag maxim
+     * @return liusta cu rezervarile gasite
+     */
     @RequestMapping(value = "/getlowcost/{price}",method = RequestMethod.GET)
     public List<Booking> getLowCost(@PathVariable double price)
     {
         return bookingRepository.findByPriceLessThan(price);
     }
 
+    /**
+     * inserarea unei rezervari in baza de date
+     * @param booking obiectul de inserat sub forma unui body Json
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
+     */
     @RequestMapping(value = "/create",method=RequestMethod.POST)
     public @ResponseBody ResponseEntity<String> create(@RequestBody Booking booking )
     {
@@ -49,6 +63,12 @@ public class BookingController {
         return new ResponseEntity<>("Booking successful added to database!",HttpStatus.OK);
     }
 
+    /**
+     * modificarea unei rezervari
+     * @param booking obiectul de modificat sub forma unui body Json
+     * @param id identificare rezervare care se doreste modificata
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
+     */
     @PutMapping(value = "/update/{id}")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Booking booking , @PathVariable  Long id)
     {
@@ -71,6 +91,11 @@ public class BookingController {
 
     }
 
+    /**
+     * stergerea unei rezervari
+     * @param id al rezervarii
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping(value= "/deletebyid/{id}")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
@@ -84,6 +109,10 @@ public class BookingController {
             return new ResponseEntity<>("Booking not found, try other id!",HttpStatus.OK);
     }
 
+    /**
+     * stergerea tuturor rezervarilor
+     * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
+     */
     @DeleteMapping("/deleteall")
     public @ResponseBody ResponseEntity<String> deleteAll()
     {

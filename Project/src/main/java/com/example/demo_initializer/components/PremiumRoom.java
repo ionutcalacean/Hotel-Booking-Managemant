@@ -3,6 +3,9 @@ package com.example.demo_initializer.components;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * tip specific de care implementeaza clasa Room
+ */
 @Entity
 @DiscriminatorValue("Premium")
 public class PremiumRoom extends Room {

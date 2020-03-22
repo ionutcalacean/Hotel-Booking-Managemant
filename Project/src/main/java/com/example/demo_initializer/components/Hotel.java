@@ -2,6 +2,9 @@ package com.example.demo_initializer.components;
 
 import javax.persistence.*;
 
+/**
+ * Clasa pentru date in persistenta logica cu tabela Hotel
+ */
 @Entity
 @Table(name = "Hotel")
 public class Hotel {

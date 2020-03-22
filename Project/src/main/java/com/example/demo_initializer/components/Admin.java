@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Clasa pentru date in persistenta logica cu tabela admin
+ */
 @Entity
 @Table(name="Admin")
 public class Admin {
@@ -21,6 +24,9 @@ public class Admin {
         this.password = password;
     }
 
+    /**
+     * Empty constructor for database reasons
+     */
     public Admin() {
     }
 

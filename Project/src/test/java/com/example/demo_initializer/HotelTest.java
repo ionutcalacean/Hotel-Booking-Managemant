@@ -28,7 +28,7 @@ public class HotelTest {
     {
         Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
         hotelRepository.save(newHotel);
-        Hotel searchHotel = hotelRepository.findByHotelNameandAndCity("Delfin","Mamaia");
+        Hotel searchHotel = hotelRepository.findByHotelNameAndAndCity("Delfin","Mamaia");
         assertNotNull(newHotel);
         assertEquals(newHotel,searchHotel);
     }
