@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -28,9 +30,9 @@ public class HotelTest {
     {
         Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
         hotelRepository.save(newHotel);
-        Hotel searchHotel = hotelRepository.findByHotelNameAndAndCity("Delfin","Mamaia");
+        List<Hotel> searchHotel = hotelRepository.findByHotelNameAndAndCity("Delfin","Mamaia");
         assertNotNull(newHotel);
-        assertEquals(newHotel,searchHotel);
+        assertEquals(newHotel,searchHotel.get((0)));
     }
 
 
