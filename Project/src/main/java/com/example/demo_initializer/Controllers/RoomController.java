@@ -3,12 +3,14 @@ package com.example.demo_initializer.Controllers;
 
 
 import com.example.demo_initializer.Repositories.RoomRepository;
+import com.example.demo_initializer.Repositories.UserRepository;
 import com.example.demo_initializer.components.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,11 +18,15 @@ import java.util.Scanner;
 @RequestMapping(value="/rooms")
 public class RoomController {
     private RoomRepository roomRepository;
+    private UserRepository userRepository;
+    // array list pentru observatori
+    private List<Observer> observers= new ArrayList<Observer>();
 
     @Autowired
-    public RoomController(RoomRepository roomRepository)
+    public RoomController(RoomRepository roomRepository,UserRepository userRepository)
     {
         this.roomRepository=roomRepository;
+        this.userRepository=userRepository;
     }
 
     /**
@@ -179,6 +185,65 @@ public class RoomController {
 
         return new ResponseEntity<>("All rooms deleted successfull!",HttpStatus.OK);
     }
+
+
+    /**
+     * adaugare observator pentru camere
+     * @param observer user-ul care trebuie notificat
+     */
+    public void addObserver(Observer observer){
+        this.observers.add(observer);
+
+    }
+
+    /**
+     * stergere observator pentru camerele hotelurilor
+     * @param observer
+     */
+    public void removeObserver(Observer observer){
+        this.observers.remove(observer);
+    }
+
+    /**
+     * notificarea tuturor utilizatorilor cu privire la camerele hotelurilor
+     * @param news stirea pe care trebuie sa o primeasca
+     */
+    public void notifyAllObservers(String news)
+    {
+        for(Observer obs: observers)
+        {
+            obs.update(news);
+        }
+    }
+
+    @GetMapping(value="/check")
+    public void checkRooms()
+    {
+        List<User> usersList= userRepository.findAll();
+        for(User usr: usersList)
+        {
+            this.addObserver(usr);
+        }
+
+        List<Room> roomsList = roomRepository.findAll();
+        boolean freeFlag = false;
+        for(Room rm: roomsList)
+        {
+            if (rm.isFree())
+                freeFlag=true;
+        }
+        if(freeFlag)
+            notifyAllObservers("Free rooms available");
+        else
+            notifyAllObservers("No free rooms!");
+        //pentru salvare update-uri in observatori
+        for(User usr: usersList)
+        {
+           userRepository.save(usr);
+        }
+    }
+
+
 
 
 

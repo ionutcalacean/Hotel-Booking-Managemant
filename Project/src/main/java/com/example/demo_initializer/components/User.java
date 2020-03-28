@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="User")
-public class User {
+public class User implements Observer{
 
     @Id
     @Column(nullable=false)
@@ -20,13 +20,16 @@ public class User {
     private String email;
     @Column(name="city")
     private String city;
+    @Column(name="news")
+    private String news;
 
-    public User(String username, String password, String phone, String email, String city) {
+    public User(String username, String password, String phone, String email, String city,String news) {
         this.username = username;
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.city = city;
+        this.news=news;
     }
 
     public User() {
@@ -70,5 +73,18 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getNews() {
+        return news;
+    }
+
+    public void setNews(String news) {
+        this.news = news;
+    }
+
+    @Override
+    public void update(String news) {
+            this.setNews(news);
     }
 }

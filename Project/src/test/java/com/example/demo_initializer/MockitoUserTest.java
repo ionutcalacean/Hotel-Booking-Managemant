@@ -53,8 +53,8 @@ public class MockitoUserTest {
     public void  testGetAllUsers()
     {
         List<User> myList=new ArrayList<User>();
-        User newUser = new User("ionut","ionutpass","0746656076","ionut@email.com","ileanda");
-        User newUser1 = new User("ionut1","ionutpass1","0746656076","ionut@email.com","ileanda");
+        User newUser = new User("ionut","ionutpass","0746656076","ionut@email.com","ileanda","");
+        User newUser1 = new User("ionut1","ionutpass1","0746656076","ionut@email.com","ileanda","");
         myList.add(newUser);
         myList.add(newUser1);
         when(userRepository.findAll()).thenReturn(myList);

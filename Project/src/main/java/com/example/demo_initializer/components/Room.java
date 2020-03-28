@@ -8,7 +8,9 @@ import javax.persistence.*;
  * Clasa pentru date in persistenta logica cu tabela Room
  */
 @Entity
-@Table(name= "Room")
+@Table(name= "Room", uniqueConstraints=
+        @UniqueConstraint(columnNames={"roomNb", "hotelId"})
+)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Room {
 
@@ -17,7 +19,6 @@ public class Room {
     private long roomId;
     private int pricePerNight;
     private int floor;
-    @Column(unique = true)
     private int roomNb;
     private int capacity;
     private boolean free;

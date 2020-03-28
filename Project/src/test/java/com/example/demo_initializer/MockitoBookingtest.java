@@ -51,7 +51,7 @@ public class MockitoBookingtest {
     public void  testGetAllBookings()
     {
         List<Booking> myList=new ArrayList<Booking>();
-        User newUser = new User("ionut","ionutpass","0746656076","ionut@email.com","ileanda");
+        User newUser = new User("ionut","ionutpass","0746656076","ionut@email.com","ileanda","");
         Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
         Room newRoom = new Room(250,1,6,2,true,newHotel);
         Booking newBooking= new Booking(newUser,newRoom,250,4);
