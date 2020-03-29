@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FullController {
@@ -14,6 +15,7 @@ public class FullController {
     private BookingRepository bookingRepository;
     private RoomRepository roomRepository;
     private UserRepository userRepository;
+    private List<Observer> observers = new ArrayList<Observer>();
 
     @Autowired
     public FullController(AdminRepository adminRepository, HotelRepository hotelRepository, BookingRepository bookingRepository, RoomRepository roomRepository, UserRepository userRepository) {
@@ -324,8 +326,41 @@ public class FullController {
     }
 
 
+    public void addObserver(Observer observer){
+        this.observers.add(observer);
 
+    }
 
+    public void notifyAllObservers(String news)
+    {
+        for(Observer obs: observers)
+        {
+            obs.update(news);
+        }
+    }
+
+    public List<User> checkRooms() {
+        List<User> usersList = userRepository.findAll();
+        for (User usr : usersList) {
+            this.addObserver(usr);
+        }
+
+        List<Room> roomsList = roomRepository.findAll();
+        boolean freeFlag = false;
+        for (Room rm : roomsList) {
+            if (rm.isFree())
+                freeFlag = true;
+        }
+        if (freeFlag)
+            notifyAllObservers("Free rooms available");
+        else
+            notifyAllObservers("No free rooms!");
+        //pentru salvare update-uri in observatori
+        for (User usr : usersList) {
+            userRepository.save(usr);
+        }
+        return usersList;
+    }
 
 
 
