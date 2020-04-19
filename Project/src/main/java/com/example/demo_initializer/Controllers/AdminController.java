@@ -117,6 +117,17 @@ public class AdminController {
         return new ResponseEntity<>("All admins deleted!",HttpStatus.OK);
     }
 
+    /**
+     * Metoda utila in cazul in care unul dintre admini isi uita parola,alt admin are acees la ea
+     * @param username username-ul adminului folosit la logare
+     * @return datele adminului
+     */
+    @GetMapping(value = "/findByUsername")
+    public Admin findByUsername(@RequestParam String username)
+    {
+        return adminRepository.findByUsername(username);
+    }
+
 
 
 

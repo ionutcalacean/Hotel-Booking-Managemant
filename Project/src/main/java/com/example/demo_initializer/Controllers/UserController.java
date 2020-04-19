@@ -124,6 +124,27 @@ public class UserController  {
         return new ResponseEntity<>("All users deleted successful!",HttpStatus.OK);
     }
 
+    /**
+     * Metoda de gasire a unui utilizator dupa username
+     * @param username
+     * @return
+     */
+    @GetMapping(value = "/findByUsername")
+    public User findByUsername(@RequestParam String username)
+    {
+        return userRepository.findByUsername(username);
+    }
+
+    /**
+     * metoda filtrare utilizatori dupa oras utila la statistici
+     * @param city orasul din care se doresc afisati utilzatorii
+     * @return lista cu utilizatorii din acel orass
+     */
+    @GetMapping(value = "/findByCity")
+    public List<User> findByCity(@RequestParam String city){
+        return userRepository.findByCity(city);
+    }
+
 
 
 }

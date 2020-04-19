@@ -431,5 +431,20 @@ public class FullController {
     }
 
 
+    public Admin findAdminByUsername( String username)
+    {
+        return adminRepository.findByUsername(username);
+    }
+
+
+    public User findUserByUsername( String username)
+    {
+        return userRepository.findByUsername(username);
+    }
+
+
+    public List<User> findUserByCity(String city){
+        return userRepository.findByCity(city);
+    }
 
 }

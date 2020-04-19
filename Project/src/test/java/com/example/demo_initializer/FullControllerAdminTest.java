@@ -51,4 +51,17 @@ public class FullControllerAdminTest {
         assertEquals(myList,returnedList);
 
     }
+    @Test
+    public void findAdminByUsernameTest()
+    {
+        List<Admin> myList=new ArrayList<Admin>();
+        Admin newAdmin = new Admin("ionut1","ionut1");
+        Admin newAdmin1 = new Admin("ionut2","ionut2");
+        myList.add(newAdmin);
+        myList.add(newAdmin1);
+        when(adminRepository.findByUsername("ionut1")).thenReturn(newAdmin);
+
+        Admin result = fullController.findAdminByUsername("ionut1");
+        assertEquals(newAdmin,result);
+    }
 }
