@@ -364,6 +364,27 @@ public class FullController {
 
 
 
+    public List<Hotel> findHotelByCity(String city)
+    {
+        List<Hotel> result =  hotelRepository.findByCity(city);
+        System.out.println(result);
+        if(!result.isEmpty())
+            return result;
+        else return null;
+    }
+
+
+
+    public List<Hotel> findHotelBySearchString(String searchString)
+    {
+        List<Hotel> result = new ArrayList<Hotel>();
+        String[] splitStr = searchString.split("\\s+");
+        for(int i= 0 ; i<splitStr.length; i++)
+        {
+            result.addAll(hotelRepository.findByHotelName(splitStr[i]));
+        }
+        return result;
+    }
 
 
 

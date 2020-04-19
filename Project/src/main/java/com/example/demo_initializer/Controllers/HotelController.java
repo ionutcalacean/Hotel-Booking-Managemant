@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -103,6 +104,39 @@ public class HotelController {
         return new ResponseEntity<>( "All hotels deleted!", HttpStatus.OK);
     }
 
+    /**
+     * Metoda de cautare hoteluri dupa oras, pe pagina web se va selecta dintr-un combobox orasul dorit pt rezervare
+     * @param city orasul in care se doreste afisarea hotelurilor disponibile
+     * @return lista de hoteluri din acel oras
+     */
+    @GetMapping(value = "/findByCity")
+    public List<Hotel> findByCity(@RequestParam String city)
+    {
+        List<Hotel> result =  hotelRepository.findByCity(city);
+        System.out.println(result);
+        if(!result.isEmpty())
+            return result;
+        else return null;
+    }
+
+    /**
+     * Aceasta metoda e menita sa rezolve problema returnarii unui Hotel dupa un search String al utilizatorului
+     * Acest search String poate sa contina numele unui Hotel, sau a 2 hoteluri, in cazuri in care sunt prezente numele
+     * a 2 hoteluri, atunci ambele vor fi prezente in rezultat
+     * @param searchString String-ul introdus de utilizator in search box-ul de cautare dupa nume hotel
+     * @return
+     */
+    @GetMapping(value = "/findBySearchString")
+    public List<Hotel> findBySearchString(@RequestParam String searchString)
+    {
+        List<Hotel> result = new ArrayList<Hotel>();
+        String[] splitStr = searchString.split("\\s+");
+        for(int i= 0 ; i<splitStr.length; i++)
+        {
+            result.addAll(hotelRepository.findByHotelName(splitStr[i]));
+        }
+        return result;
+    }
 
 
 }
