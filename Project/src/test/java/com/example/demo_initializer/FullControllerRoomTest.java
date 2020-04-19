@@ -78,5 +78,102 @@ public class FullControllerRoomTest {
                 assertEquals("No free rooms!",usr.getNews());
     }
 
+    @Test
+    public void getRoomLowCostTest()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+        Room newRoom1 = new Room(200,1,7,2,false,newHotel);
+
+
+        List<Room> expected =new ArrayList<Room>();
+        expected.add(newRoom1);
+        when(roomRepository.findByPricePerNightLessThan(240)).thenReturn(expected);
+
+        List<Room> result = fullController.getRoomLowCost(240);
+
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void findRoomByFloorTest()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+        Room newRoom1 = new Room(200,2,7,2,false,newHotel);
+
+        List<Room> expected =new ArrayList<Room>();
+        expected.add(newRoom1);
+        when(roomRepository.findByFloor(2)).thenReturn(expected);
+
+        List<Room> result = fullController.findRoomByFloor(2);
+
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void findRoomByCapacity()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+        Room newRoom1 = new Room(200,2,7,3,false,newHotel);
+
+        List<Room> expected =new ArrayList<Room>();
+        expected.add(newRoom1);
+        when(roomRepository.findByCapacity(3)).thenReturn(expected);
+
+        List<Room> result = fullController.findRoomByCapacity(3);
+
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void findFreeRoomsTest()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+        Room newRoom1 = new Room(200,2,7,3,true,newHotel);
+
+        List<Room> allRooms =new ArrayList<Room>();
+        allRooms.add(newRoom);
+        allRooms.add(newRoom1);
+
+
+
+        List<Room> expected =new ArrayList<Room>();
+        expected.add(newRoom1);
+        when(roomRepository.findAll()).thenReturn(allRooms);
+
+        List<Room> result = fullController.findFreeRooms();
+
+        assertEquals(expected,result);
+    }
+
+    @Test
+    public void findRoomByHotelTest()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+        Room newRoom1 = new Room(200,2,7,3,true,newHotel);
+
+        List<Room> allRooms =new ArrayList<Room>();
+        allRooms.add(newRoom);
+        allRooms.add(newRoom1);
+
+
+
+        List<Room> expected =new ArrayList<Room>();
+        expected.add(newRoom);
+        expected.add(newRoom1);
+        when(roomRepository.findAll()).thenReturn(allRooms);
+
+        List<Room> result = fullController.findRoomByHotel("Delfin");
+
+        assertEquals(expected,result);
+
+    }
+
+
+
 
 }

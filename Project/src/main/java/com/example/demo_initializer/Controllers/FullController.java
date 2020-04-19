@@ -387,5 +387,49 @@ public class FullController {
     }
 
 
+    public List<Room> getRoomLowCost(int price)
+    {
+        return roomRepository.findByPricePerNightLessThan(price);
+    }
+
+
+
+    public List<Room> findRoomByFloor( int floor)
+    {
+        return roomRepository.findByFloor(floor);
+    }
+
+
+    public List<Room> findRoomByCapacity(int capacity)
+    {
+        return roomRepository.findByCapacity(capacity);
+    }
+
+
+    public List<Room> findRoomByHotel( String hotelName)
+    {
+        List<Room> allRooms=roomRepository.findAll();
+        List<Room> result=new ArrayList<Room>();
+        for(Room r:allRooms)
+        {
+            if(r.getHotel().getHotelName().equals(hotelName))
+                result.add(r);
+        }
+        return result;
+    }
+
+    public List<Room> findFreeRooms()
+    {
+        List<Room> allRooms=roomRepository.findAll();
+        List<Room> result=new ArrayList<Room>();
+        for(Room r:allRooms)
+        {
+            if(r.isFree())
+                result.add(r);
+        }
+        return result;
+    }
+
+
 
 }

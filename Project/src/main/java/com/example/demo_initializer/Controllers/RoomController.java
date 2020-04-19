@@ -244,8 +244,73 @@ public class RoomController {
     }
 
 
+    /**
+     * Motoda de filtrare pentru cautare camere la un anumit pret
+     * @param price pretul pana la care sa se afiseze
+     * @return lista de camere care se incadreaza in limita data
+     */
+    @RequestMapping(value = "/filterByPrice/{price}",method = RequestMethod.GET)
+    public List<Room> getLowCost(@PathVariable int price)
+    {
+        return roomRepository.findByPricePerNightLessThan(price);
+    }
 
+    /**
+     * Filtrare camere dupa etaj
+     * @param floor etajul dorit
+     * @return lista cu camerele care se portivesc filtrarii
+     */
+    @GetMapping(value = "/findByFloor")
+    public List<Room> findByFloor(@RequestParam int floor)
+    {
+        return roomRepository.findByFloor(floor);
+    }
 
+    /**
+     * Metoda de filtrare camere dupa capacitate( 2 3 peroane, sau 20 -30 pentru conferinte)
+     * @param capacity capacitatea dorita
+     * @return lista cu camerele de capacitatea dorita
+     */
+    @GetMapping(value ="/findByCapacity")
+    public List<Room> findByCapacity(@RequestParam int capacity)
+    {
+        return roomRepository.findByCapacity(capacity);
+    }
+
+    /**
+     * Metoda de afisare a cemerelor dintr-un hotel selectat dupa nume
+     * @param hotelName numele hotelului unde se doreste vizualizarea camerelor
+     * @return lista cu camerele hotelului
+     */
+    @GetMapping(value = "/findByHotel")
+    public List<Room> findByHotel(@RequestParam String hotelName)
+    {
+        List<Room> allRooms=roomRepository.findAll();
+        List<Room> result=new ArrayList<Room>();
+        for(Room r:allRooms)
+        {
+            if(r.getHotel().getHotelName().equals(hotelName))
+                result.add(r);
+        }
+        return result;
+    }
+
+    /**
+     * Metoda de filtrare si afisare doar a camerelor ramase libere
+     * @return lista cu camerele libere
+     */
+    @GetMapping(value = "/findFreeRooms")
+    public List<Room> findFreeRooms()
+    {
+        List<Room> allRooms=roomRepository.findAll();
+        List<Room> result=new ArrayList<Room>();
+        for(Room r:allRooms)
+        {
+            if(r.isFree())
+                result.add(r);
+        }
+        return result;
+    }
 
 
 
