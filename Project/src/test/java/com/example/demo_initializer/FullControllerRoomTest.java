@@ -5,6 +5,7 @@ import com.example.demo_initializer.Controllers.RoomController;
 import com.example.demo_initializer.Repositories.RoomRepository;
 import com.example.demo_initializer.Repositories.UserRepository;
 import com.example.demo_initializer.components.Hotel;
+import com.example.demo_initializer.components.PremiumRoom;
 import com.example.demo_initializer.components.Room;
 import com.example.demo_initializer.components.User;
 import org.junit.Rule;
@@ -172,6 +173,20 @@ public class FullControllerRoomTest {
         assertEquals(expected,result);
 
     }
+
+    @Test
+    public void FactoryPatternRoomTest()
+    {
+        Hotel newHotel = new Hotel("Delfin","Principala","Mamaia","0741912423");
+        Room newRoom = new Room(250,1,6,2,false,newHotel);
+
+        when(roomRepository.save(newRoom)).thenReturn(newRoom);
+
+        Room returnedRoom= fullController.createRoom(newRoom,"PremiumRoom");
+
+        assertEquals(true,returnedRoom instanceof PremiumRoom);
+    }
+
 
 
 
