@@ -89,3 +89,40 @@ Se observa in imaginea de mai sus, faptul ca Controllerul pentru camere are o de
 ![ObserverPattern](https://user-images.githubusercontent.com/49992235/77852502-afdb7280-71e7-11ea-9b37-b5b341db9d86.png)
 
 Dupa cum se observa in imagine, observatorii concreti sunt utilizatorii, care implementeaza interfata Observer, oferind o implementare concreta a metodei update(), prin care campul specific fiecarul utilizator se updateaza cu stirile primite de la RoomController. RoomController e un agregat, prin faptul ca mentile o lista dinamica cu utilizatorii sistemului de management al lantului hotelier. Prin metoda addObserver() se mai adauga un observator, removeObserver() face contrariul, iar notifyAllObserves() are un pseudocod prezentat in notita aferenta. Metoda de baza a clasei este checkRooms(), in aceasta se adauga dinamic toti utilizatorii in lista de observatori, se verifica camerele hotelurilor, si in functie de disponibilitatea sau indisponibilitatea acestora sunt notificati utilizatorii.
+
+#### Metode principale si descriere sumara
+
+- ###### metoda findByUsername(String username) - clasa AdminController
+     -- aceasta metoda este una utila pentru cazul in care unul dintre adminii sistemului de management al lantului hotelier isi pierde parola, un alt admin avand acces la vechea parola prin intermediul acestei metode;
+- ###### metoda findByCity(String city) - clasa HotelController
+     -- pe pagina web a aplicatiei este foarte utila o filtrare a hotelurilor cat mai la indemana utilizatorului, pentru aceasta am creat aceasta metoda, care afiseaza doar hotelurile din orasul selectat de utilizator;
+- ###### metoda findBySearchString(String searchString) - clasa HotelController
+     -- ca pe orice pagina web, aceasta aplicatie trebuie sa ofere un feedback in cazul in care utilizatorul cauta dupa numele unui Hotel. Pentru aceasta metoda de mai sus primeste Stringul introdus de utilizator in textbox-ul corespunzator, si ofera rezultatele care se potrivesc( exemplu : utilizatorul introduce in textfield 2 nume de hoteluri care exista in lantul hotelier, aplicatia va cauta in baza de date, si daca numele sunt prezente, se vor afisa doar acele hoteluri);
+- ###### metoda findByCity(String city) - clasa UserController
+    -- aceasta este o metoda necesara statisticilor care vor fi afisate catre administrator, spre exemplu cand se doreste prezentarea unei statistici care sa prezinte orasele din care vin cei mai multi clienti, fapt util pentru administrator in vederea actualizarii publicitatii in orasele de unde nu prea vin clienti
+- ###### metode create, update, delete - pentru toate clasele proiectului
+- ###### metoda findFreeRooms() - clasa RoomController
+    -- aceasta metoda ajuta la afisarea doar a camerelor libere, cele ocupate nefiind afisate
+- ###### metoda findByHotel(String hotel) - clasa RoomController
+    -- aceasta metoda afiseaza doar camerele din hotelul selectat, nu din toate hotelurile
+- ###### metoda create(Reservation reservation) - clasa ReservationController
+    -- aceasta metoda este una din cele mai folositoare, prin aceasta se creeaza rezervari pentru diferite camere ale hotelurilor. Aceata metoda verifica de asemenea ca perioadele din rezervari sa nu se suprapuna prin urmatorul algoritm:
+    Fie Conditia A care inseamna ca perioada 1 e complet dupa perioada 2
+
+                    (True if StartA > EndB)
+
+    Fie Conditia  B care inseamna ca perioada 1 e complet inainte de perioada 2
+
+                    (True if EndA < StartB)
+    Suprapunerea exista daca nici A nici B nu e TRUE.
+    (Daca o perioada nu e complet dupa alta, nici complet inainte, atunci sigur se suprapun)
+
+   Legea lui DE MORGAN:
+
+                    Not (A Or B) <=> Not A And Not B
+
+    Ceea ce inseamna :(StartA <= EndB)  and  (EndA >= StartB)
+
+#### Testare
+- In sectiunea de Unit Teste, sunt prezente teste pentru toate metodele de mai sus. Pentru create, update si delete, fiind repetitive, s-au executat teste doar pe cate o clasa.
+
