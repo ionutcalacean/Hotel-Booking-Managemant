@@ -3,6 +3,8 @@ package com.example.demo_initializer.components;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clasa pentru date in persistenta logica cu tabela Room
@@ -26,6 +28,8 @@ public class Room {
     @JoinColumn(name="hotelId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Hotel hotel;
+
+
 
 
     public Room( int pricePerNight, int floor, int roomNb, int capacity,boolean free,Hotel hotel) {
@@ -95,4 +99,6 @@ public class Room {
     public void setFree(boolean free) {
         this.free = free;
     }
+
+
 }

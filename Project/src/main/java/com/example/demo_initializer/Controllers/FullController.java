@@ -3,6 +3,7 @@ package com.example.demo_initializer.Controllers;
 import com.example.demo_initializer.Repositories.*;
 import com.example.demo_initializer.components.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -15,15 +16,17 @@ public class FullController {
     private BookingRepository bookingRepository;
     private RoomRepository roomRepository;
     private UserRepository userRepository;
+    private ReservationRepository reservationRepository;
     private List<Observer> observers = new ArrayList<Observer>();
 
     @Autowired
-    public FullController(AdminRepository adminRepository, HotelRepository hotelRepository, BookingRepository bookingRepository, RoomRepository roomRepository, UserRepository userRepository) {
+    public FullController(AdminRepository adminRepository, HotelRepository hotelRepository, BookingRepository bookingRepository, RoomRepository roomRepository, UserRepository userRepository,ReservationRepository reservationRepository) {
         this.adminRepository = adminRepository;
         this.hotelRepository = hotelRepository;
         this.bookingRepository = bookingRepository;
         this.roomRepository = roomRepository;
         this.userRepository = userRepository;
+        this.reservationRepository=reservationRepository;
     }
 
 
@@ -446,5 +449,43 @@ public class FullController {
     public List<User> findUserByCity(String city){
         return userRepository.findByCity(city);
     }
+
+
+    public Reservation createReservation(Reservation reservation )
+    {
+        List<Reservation> allReservations = reservationRepository.findAll();
+
+        List<Reservation> thisRoomRes = new ArrayList<Reservation>();
+
+        for(Reservation res : allReservations)
+        {
+            if(res.getRoom().getRoomId()==reservation.getRoom().getRoomId())
+                thisRoomRes.add(res);
+        }
+
+        boolean overlaps = false;
+        for(Reservation myRes : thisRoomRes)
+        {
+
+            if(myRes.getInDate().before(reservation.getOutDate()) && myRes.getOutDate().after(reservation.getInDate()))
+            {
+                overlaps=true;
+            }
+
+        }
+        if(!overlaps) {
+
+
+            try {
+                reservationRepository.save(reservation);
+            } catch (DataIntegrityViolationException e) {
+                return null;
+            }
+
+            return reservation;
+        }
+        else return null;
+    }
+
 
 }

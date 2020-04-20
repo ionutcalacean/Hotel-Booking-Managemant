@@ -312,6 +312,25 @@ public class RoomController {
         return result;
     }
 
+    /**
+     * Adaugare rezervare pentru un utilizator, necesita update metoda!
+     * @param reservation
+     * @param id
+     * @return
+     */
+    @PutMapping(value = "/addReservation/{id}")
+    public Room addReservation(@RequestBody Reservation reservation,@PathVariable Long id)
+    {
+        Room myRoom = roomRepository.findById(id).orElse(null);
+
+      //  myRoom.getReservations().add(reservation);
+
+
+        roomRepository.save(myRoom);
+
+        return myRoom;
+
+    }
 
 
 

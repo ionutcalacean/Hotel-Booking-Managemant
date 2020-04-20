@@ -17,15 +17,17 @@ public class DatabaseRun implements CommandLineRunner {
     private UserRepository userRepository;
     private AdminRepository adminRepository;
     private HotelRepository hotelRepository;
+    private ReservationRepository reservationRepository;
     @Autowired
     public DatabaseRun(BookingRepository bookingRepository, RoomRepository roomRepository,UserRepository userRepository,AdminRepository adminRepository,
-            HotelRepository hotelRepository)
+            HotelRepository hotelRepository,ReservationRepository reservationRepository)
     {
         this.bookingRepository=bookingRepository;
         this.roomRepository=roomRepository;
         this.userRepository=userRepository;
         this.adminRepository=adminRepository;
         this.hotelRepository=hotelRepository;
+        this.reservationRepository=reservationRepository;
     }
 
 
@@ -36,6 +38,7 @@ public class DatabaseRun implements CommandLineRunner {
         List<User> users=new ArrayList<>();
         List<Admin> admins =new ArrayList<>();
         List<Hotel>  hotels = new ArrayList<>();
+        List<Reservation> reservations = new ArrayList<>();
 
 
         bookingRepository.saveAll(bookings);
@@ -43,5 +46,6 @@ public class DatabaseRun implements CommandLineRunner {
         adminRepository.saveAll(admins);
         userRepository.saveAll(users);
         hotelRepository.saveAll(hotels);
+        reservationRepository.saveAll(reservations);
     }
 }
