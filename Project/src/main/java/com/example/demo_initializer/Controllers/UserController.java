@@ -145,6 +145,17 @@ public class UserController  {
         return userRepository.findByCity(city);
     }
 
+    @GetMapping(value = "/login")
+    public User login(@RequestParam String username, @RequestParam String password)
+    {
+        List<User> users = userRepository.findAll();
 
+        for(User u:users)
+        {
+            if(u.getUsername().equals(username) && u.getPassword().equals(password))
+                return u;
+        }
+        return null;
+    }
 
 }
