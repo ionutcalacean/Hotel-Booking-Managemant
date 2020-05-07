@@ -126,3 +126,7 @@ Dupa cum se observa in imagine, observatorii concreti sunt utilizatorii, care im
 #### Testare
 - In sectiunea de Unit Teste, sunt prezente teste pentru toate metodele de mai sus. Pentru create, update si delete, fiind repetitive, s-au executat teste doar pe cate o clasa.
 
+### Diagrama de secventa
+- Aceasta diagrama de secventa prezinta flow-ul sistemului in cazul in care un client se logheaza cu succes in sistemul de management al regimului hotelier, cauta prin introducerea unui String in textbox-ul dedicat cautarii numele unui hotel sau numele mai multor hoteluri, si selecteaza cu succes o camera libera intr-o perioada aleasa.
+
+![Sequence Diagram](https://user-images.githubusercontent.com/49992235/81302919-af09ec00-9083-11ea-92c6-6eb24ba2f44e.png)
