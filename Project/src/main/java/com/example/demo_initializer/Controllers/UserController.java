@@ -28,6 +28,7 @@ public class UserController  {
      * @return lista
      */
     @GetMapping(value="/getall")
+    @CrossOrigin(origins = "*")
     public List<User> getall()
     {
         return userRepository.findAll();
@@ -44,6 +45,7 @@ public class UserController  {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
     @PostMapping(value="/create")
+    @CrossOrigin(origins = "*")
     public @ResponseBody  ResponseEntity<String> create(@RequestParam String username, @RequestParam String password, @RequestParam String phone,
                                             @RequestParam String email, @RequestParam String city, @RequestParam String news)
     {
@@ -52,7 +54,7 @@ public class UserController  {
         if(foo != null)
         {
             return new ResponseEntity<String>(
-                    "username already in use",
+                    "\"username already in use\"",
                     HttpStatus.BAD_REQUEST);
         }
         User user = new User(username,password,phone,email,city,news);
@@ -60,7 +62,7 @@ public class UserController  {
         userRepository.save(user);
 
         return new ResponseEntity<>(
-                "User added succesfull!",
+                "\"User added succesfull!\"",
                 HttpStatus.OK);
     }
 
@@ -71,6 +73,7 @@ public class UserController  {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
      */
     @PutMapping(value = "/update/{username}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> update(@RequestBody User newUser, @PathVariable String username)
     {
         User foo = userRepository.findById(username).orElse(null);
@@ -84,13 +87,13 @@ public class UserController  {
             foo.setPhone(newUser.getPhone());
             foo.setNews(newUser.getNews());
             userRepository.save(foo);
-            return new ResponseEntity<>("User updated successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"User updated successful!\"",HttpStatus.OK);
         }
         else
         {
             newUser.setUsername(username);
             userRepository.save(newUser);
-            return new ResponseEntity<>("User not found, but addded to database successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"User not found, but addded to database successful!\"",HttpStatus.OK);
         }
     }
 
@@ -100,16 +103,17 @@ public class UserController  {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value= "/deletebyid/{username}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable String username)
     {
         User foo = userRepository.findById(username).orElse(null);
         if(foo!= null)
         {
             userRepository.deleteById(username);
-            return new ResponseEntity<>("User deleted successful!", HttpStatus.OK);
+            return new ResponseEntity<>("\"User deleted successful!\"", HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("User not found, try other username !",HttpStatus.OK);
+            return new ResponseEntity<>("\"User not found, try other username !\"",HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -117,11 +121,12 @@ public class UserController  {
      * @return
      */
     @DeleteMapping(value="/deleteall")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> deleteall()
     {
         userRepository.deleteAll();
 
-        return new ResponseEntity<>("All users deleted successful!",HttpStatus.OK);
+        return new ResponseEntity<>("\"All users deleted successful!\"",HttpStatus.OK);
     }
 
     /**
@@ -130,6 +135,7 @@ public class UserController  {
      * @return
      */
     @GetMapping(value = "/findByUsername")
+    @CrossOrigin(origins = "*")
     public User findByUsername(@RequestParam String username)
     {
         return userRepository.findByUsername(username);
@@ -141,11 +147,13 @@ public class UserController  {
      * @return lista cu utilizatorii din acel orass
      */
     @GetMapping(value = "/findByCity")
+    @CrossOrigin(origins = "*")
     public List<User> findByCity(@RequestParam String city){
         return userRepository.findByCity(city);
     }
 
     @GetMapping(value = "/login")
+    @CrossOrigin(origins = "*")
     public User login(@RequestParam String username, @RequestParam String password)
     {
         List<User> users = userRepository.findAll();

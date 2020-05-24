@@ -34,10 +34,59 @@ public class RoomController {
      * @return lista cu camerele
      */
     @GetMapping(value="/getall")
+    @CrossOrigin(origins = "*")
     public List<Room> getAll()
     {
         return roomRepository.findAll();
     }
+
+    @GetMapping(value="/getallPremium")
+    @CrossOrigin(origins = "*")
+    public List<Room> getAllPremium()
+    {
+        List<Room> rooms= roomRepository.findAll();
+
+        List<Room> returns = new ArrayList<Room>();
+
+        for(Room r: rooms)
+        {
+            if(r instanceof PremiumRoom)
+                returns.add(r);
+        }
+        return returns;
+    }
+
+    @GetMapping(value="/getallRegular")
+    @CrossOrigin(origins = "*")
+    public List<Room> getAllRegular()
+    {
+        List<Room> rooms= roomRepository.findAll();
+
+        List<Room> returns = new ArrayList<Room>();
+
+        for(Room r: rooms)
+        {
+            if(r instanceof RegularRoom)
+                returns.add(r);
+        }
+        return returns;
+    }
+    @GetMapping(value="/getallConference")
+    @CrossOrigin(origins = "*")
+    public List<Room> getAllConference()
+    {
+        List<Room> rooms= roomRepository.findAll();
+
+        List<Room> returns = new ArrayList<Room>();
+
+        for(Room r: rooms)
+        {
+            if(r instanceof ConferenceRoom)
+                returns.add(r);
+        }
+        return returns;
+    }
+
 
     /*@PostMapping(value="/create/{roomtype}")
     public @ResponseBody  List<Room> create(@RequestParam String roomtype,@RequestParam int price, @RequestParam int floor, @RequestParam int roomNb, @RequestParam int capacity,
@@ -49,8 +98,11 @@ public class RoomController {
      * @param roomtype tipul camerei pentru Factory pattern
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
-    @PostMapping(value="/create/{roomtype}")
-    public @ResponseBody  List<Room> create(@RequestBody Room room, @PathVariable String roomtype)
+    @PostMapping(value="/create/{roomtype}/{balcony}/{roomService}/{spa}/{projector}/{leatherseats}/{matrimonialbad}")
+    @CrossOrigin(origins = "*")
+    public Room create(@RequestBody Room room, @PathVariable String roomtype, @PathVariable String balcony
+       , @PathVariable String roomService, @PathVariable String spa, @PathVariable String projector
+      ,@PathVariable String leatherseats, @PathVariable String matrimonialbad)
     {
         RoomFactory myRoomFactory=new RoomFactory();
         Room newRoom=myRoomFactory.getRoom(roomtype);
@@ -62,41 +114,41 @@ public class RoomController {
         newRoom.setFree(room.isFree());
         newRoom.setHotel(room.getHotel());
 
-        Scanner keyboard = new Scanner(System.in);
+
         if(newRoom instanceof PremiumRoom)
         {
-            System.out.println("Introduce daca are balcon sau nu, roomService, spa:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-            boolean balcony = keyboard.nextBoolean();
-            boolean roomService = keyboard.nextBoolean();
-            boolean spa = keyboard.nextBoolean();
-            ((PremiumRoom) newRoom).setBalcony(balcony);
-            ((PremiumRoom) newRoom).setRoomService(roomService);
-            ((PremiumRoom) newRoom).setSpa(spa);
+
+            boolean balcony_b = (balcony.equals("true")) ? true : false;
+            boolean roomService_b = (balcony.equals("true")) ? true : false;
+            boolean spa_b = (balcony.equals("true")) ? true : false;
+            ((PremiumRoom) newRoom).setBalcony(balcony_b);
+            ((PremiumRoom) newRoom).setRoomService(roomService_b);
+            ((PremiumRoom) newRoom).setSpa(spa_b);
         }
         if(newRoom instanceof ConferenceRoom)
         {
-            System.out.println("Introduce daca are proiector sau nu, scaune de piele:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-            boolean projector = keyboard.nextBoolean();
-            boolean leatherSeats = keyboard.nextBoolean();
-            ((ConferenceRoom) newRoom).setProjector(projector);
-            ((ConferenceRoom) newRoom).setLeatherSeats(leatherSeats);
+
+            boolean projector_b = (projector.equals("true")) ? true : false;
+            boolean leatherSeats_b = (leatherseats.equals("true")) ? true : false;
+            ((ConferenceRoom) newRoom).setProjector(projector_b);
+            ((ConferenceRoom) newRoom).setLeatherSeats(leatherSeats_b);
 
         }
         if(newRoom instanceof RegularRoom)
         {
-            System.out.println("Introduce daca are pat matrimonial sau nu:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-            boolean matrimonialBad = keyboard.nextBoolean();
-            ((RegularRoom) newRoom).setMatrimonialBad(matrimonialBad);
+
+            boolean matrimonialBad_b = (matrimonialbad.equals("true")) ? true : false;
+            ((RegularRoom) newRoom).setMatrimonialBad(matrimonialBad_b);
 
 
         }
 
         roomRepository.save(newRoom);
 
-        return roomRepository.findAll();
+        return newRoom;
     }
 
     /**
@@ -105,8 +157,11 @@ public class RoomController {
      * @param id pentru camera modificata
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
      */
-    @PutMapping(value = "/update/{id}")
-    public @ResponseBody ResponseEntity<String> update(@RequestBody Room room , @PathVariable  Long id) {
+    @PutMapping(value = "/update/{id}/{balcony}/{roomService}/{spa}/{projector}/{leatherseats}/{matrimonialbad}")
+    @CrossOrigin(origins = "*")
+    public @ResponseBody ResponseEntity<String> update(@RequestBody Room room , @PathVariable  Long id,@PathVariable String balcony
+            , @PathVariable String roomService, @PathVariable String spa, @PathVariable String projector
+            ,@PathVariable String leatherseats, @PathVariable String matrimonialbad) {
         Room foo = roomRepository.findById(id).orElse(null);
         if (foo != null) {
             foo.setFree(room.isFree());
@@ -115,44 +170,44 @@ public class RoomController {
             foo.setFloor(room.getFloor());
             foo.setPricePerNight(room.getPricePerNight());
 
-            Scanner keyboard = new Scanner(System.in);
+
             if(foo instanceof PremiumRoom)
             {
-                System.out.println("Introduce daca are balcon sau nu, roomService, spa:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-                boolean balcony = keyboard.nextBoolean();
-                boolean roomService = keyboard.nextBoolean();
-                boolean spa = keyboard.nextBoolean();
-                ((PremiumRoom) foo).setBalcony(balcony);
-                ((PremiumRoom) foo).setRoomService(roomService);
-                ((PremiumRoom) foo).setSpa(spa);
+
+                boolean balcony_b = (balcony.equals("true")) ? true : false;
+                boolean roomService_b = (balcony.equals("true")) ? true : false;
+                boolean spa_b = (balcony.equals("true")) ? true : false;
+                ((PremiumRoom) foo).setBalcony(balcony_b);
+                ((PremiumRoom) foo).setRoomService(roomService_b);
+                ((PremiumRoom) foo).setSpa(spa_b);
             }
             if(foo instanceof ConferenceRoom)
             {
-                System.out.println("Introduce daca are proiector sau nu, scaune de piele:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-                boolean projector = keyboard.nextBoolean();
-                boolean leatherSeats = keyboard.nextBoolean();
-                ((ConferenceRoom) foo).setProjector(projector);
-                ((ConferenceRoom) foo).setLeatherSeats(leatherSeats);
+
+                boolean projector_b = (projector.equals("true")) ? true : false;
+                boolean leatherSeats_b = (leatherseats.equals("true")) ? true : false;
+                ((ConferenceRoom) foo).setProjector(projector_b);
+                ((ConferenceRoom) foo).setLeatherSeats(leatherSeats_b);
 
             }
             if(foo instanceof RegularRoom)
             {
-                System.out.println("Introduce daca are pat matrimonial sau nu:(sub forma true/fale -> enter true/false-> enter,etc):");
 
-                boolean matrimonialBad = keyboard.nextBoolean();
-                ((RegularRoom) foo).setMatrimonialBad(matrimonialBad);
+
+                boolean matrimonialBad_b = (matrimonialbad.equals("true")) ? true : false;
+                ((RegularRoom) foo).setMatrimonialBad(matrimonialBad_b);
 
 
             }
 
             roomRepository.save(foo);
-            return new ResponseEntity<>("Room successful updated!", HttpStatus.OK);
+            return new ResponseEntity<>("\"Room successful updated!\"", HttpStatus.OK);
         } else {
             room.setRoomId(id);
-            roomRepository.save(room);
-            return new ResponseEntity<>("Room not found, but added to database successful", HttpStatus.OK);
+
+            return new ResponseEntity<>("\"Room not found\"", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -162,16 +217,17 @@ public class RoomController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value= "/deletebyid/{id}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
         Room foo = roomRepository.findById(id).orElse(null);
         if(foo!= null)
         {
             roomRepository.deleteById(id);
-            return new ResponseEntity<>("Room deleted successful!", HttpStatus.OK);
+            return new ResponseEntity<>("\"Room deleted successful!\"", HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("Room not found, try other  room id!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Room not found, try other  room id!\"",HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -179,6 +235,7 @@ public class RoomController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value="/deleteall")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> deleteall()
     {
         roomRepository.deleteAll();
@@ -217,6 +274,7 @@ public class RoomController {
     }
 
     @GetMapping(value="/check")
+    @CrossOrigin(origins = "*")
     public void checkRooms()
     {
         List<User> usersList= userRepository.findAll();
@@ -250,6 +308,7 @@ public class RoomController {
      * @return lista de camere care se incadreaza in limita data
      */
     @RequestMapping(value = "/filterByPrice/{price}",method = RequestMethod.GET)
+    @CrossOrigin(origins = "*")
     public List<Room> getLowCost(@PathVariable int price)
     {
         return roomRepository.findByPricePerNightLessThan(price);
@@ -261,6 +320,7 @@ public class RoomController {
      * @return lista cu camerele care se portivesc filtrarii
      */
     @GetMapping(value = "/findByFloor")
+    @CrossOrigin(origins = "*")
     public List<Room> findByFloor(@RequestParam int floor)
     {
         return roomRepository.findByFloor(floor);
@@ -272,6 +332,7 @@ public class RoomController {
      * @return lista cu camerele de capacitatea dorita
      */
     @GetMapping(value ="/findByCapacity")
+    @CrossOrigin(origins = "*")
     public List<Room> findByCapacity(@RequestParam int capacity)
     {
         return roomRepository.findByCapacity(capacity);
@@ -283,6 +344,7 @@ public class RoomController {
      * @return lista cu camerele hotelului
      */
     @GetMapping(value = "/findByHotel")
+    @CrossOrigin(origins = "*")
     public List<Room> findByHotel(@RequestParam String hotelName)
     {
         List<Room> allRooms=roomRepository.findAll();
@@ -300,6 +362,7 @@ public class RoomController {
      * @return lista cu camerele libere
      */
     @GetMapping(value = "/findFreeRooms")
+    @CrossOrigin(origins = "*")
     public List<Room> findFreeRooms()
     {
         List<Room> allRooms=roomRepository.findAll();

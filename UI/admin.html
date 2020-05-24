@@ -1,0 +1,727 @@
+<!--
+Author: w3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Hotel Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Provision Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+    </script>
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- //online-fonts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/index.js"></script>
+</head>
+
+<body>
+    <!-- main -->
+    <div class="main-content inner" id="home">
+        <!-- header -->
+        <header>
+            <div class="container-fluid">
+                <!-- nav -->
+                <nav class="py-md-4 py-3 d-lg-flex nav_w3pvt">
+                    <div id="logo">
+                        <h1><a href="index.html">Hotel Management System</a></h1>
+                    </div>
+                    <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu mt-lg-3 ml-auto">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html">Experience</a></li>
+                        <li>
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            <a href="#">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <input type="checkbox" id="drop-2" />
+                            <ul>
+                                <li><a href="index.html" class="drop-text">Professors</a></li>
+                                <li><a href="index.html" class="drop-text">Statistics</a></li>
+                                <li><a href="index.html" class="drop-text">Reviews</a></li>
+                                <li><a href="course.html" class="drop-text">Courses</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li>
+                            <p class="w3pvt-phone">
+                                <span class="fa fa-phone mr-2"></span>+40 746 65 60 76
+                            </p>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- //nav -->
+            </div>
+        </header>
+        <!-- //header -->
+    </div>
+    <!-- //main -->
+    <!-- banner-bottom -->
+    <section class="banner-bottom py-5">
+        <div class="container py-md-4">
+            <h3 class="tittle-w3layouts two text-center mb-lg-5">System configurations and statistics</h3>
+            <div class="comment-top mt-5 row">
+                <div class="col-lg-7 comment-bottom w3pvt_mail_grid_right">
+                    <form action="#" method="post">
+					
+						<h3> SECTION FOR ADMINISTRATING USERS </h3>
+						<ul id="nothing" style="border: 3px solid black"></ul>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>1.Show all users:</h4>
+                                 <button type="button" class="btn btn-default"  id="findall_button">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="users" style="border: 1px solid black"></ul>
+						                        
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>2.Update specified user, introduce all fields:(after introducind all update details)</h4>
+                                 <button type="button" class="btn btn-default"  id="update_user_button">Proceed</button>
+                            </div>
+                        </div>					
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_update" name="Username" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Password</label>
+                                <input class="form-control" type="text" id="password_update" name="Password" placeholder="" required="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" id="city_update" name="City" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="email" id="email_update" name="Email" placeholder="" required="">
+                            </div>
+
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" id="phone_update" name="Phone" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="user_updated" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>3.Delete a specified user:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_user_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_delete" name="Username" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="user_deleted" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>4.Delete all system users:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_all_users">Proceed</button>
+                            </div>
+                        </div>	
+						
+						<ul id="deleted_all_message" style="border: 1px solid black"></ul>
+						
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>5.Find users details by username:</h4>
+                                 <button type="button" class="btn btn-default"  id="find_user_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_details" name="Username" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="user_details" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>6.City statistics(for users):</h4>
+                                 <button type="button" class="btn btn-default"  id="city_statistic_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" id="city_name" name="Username" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="city_statistic" style="border: 1px solid black"></ul>
+						
+						<h3> SECTION FOR ADMINISTRATING ADMINS </h3>
+						<ul id="nothing2" style="border: 3px solid black"></ul>
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>1.Show all admins:</h4>
+                                 <button type="button" class="btn btn-default"  id="findall_admin_button">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="admins" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>1.Create a new page admin:</h4>
+                                 <button type="button" class="btn btn-default"  id="create_admin_button">Proceed</button>
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_admin" name="Username" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Password</label>
+                                <input class="form-control" type="text" id="password_admin" name="Password" placeholder="" required="">
+                            </div>
+                        </div>
+						<ul id="admin_create" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>2.Update specified admin, introduce all fields:</h4>
+                                 <button type="button" class="btn btn-default"  id="update_admin_button">Proceed</button>
+                            </div>
+                        </div>					
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_admin_update" name="Username" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Password</label>
+                                <input class="form-control" type="text" id="password_admin_update" name="Password" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="admin_updated" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>3.Delete a specified admin:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_admin_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_admin_delete" name="Username" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="admin_deleted" style="border: 1px solid black"></ul>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>4.Delete all system admins:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_all_admins">Proceed</button>
+                            </div>
+                        </div>	
+						
+						<ul id="deleted_all_admins_message" style="border: 1px solid black"></ul>
+						
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <h4>5.Find admin details by username:</h4>
+                                 <button type="button" class="btn btn-default"  id="find_admin_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="text" id="username_admin_details" name="Username" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="admin_details" style="border: 1px solid black"></ul>
+						
+						<span id="register_message"></span>
+                      
+                    </form>
+                </div>
+				
+                <div class="col-lg-5 comment-bottom w3pvt_mail_grid-img">
+                    <img class="img-fluid" src="images/admin.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- //banner-bottom -->
+	<section class="banner-bottom py-5">
+		<h3 align = "center"> SECTION FOR ADMINISTRATING HOTELS</h3>
+		<ul id="nothing2" style="border: 3px solid black"></ul>
+		
+		                <div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>1.Show all hotels:</h4>
+                                 <button type="button" class="btn btn-default"  id="findall_hotel_button">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="hotels" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+						<div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>2.Create a hotel:</h4>
+                                 <button type="button" class="btn btn-default"  id="create_hotel_button">Proceed</button>
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Hotel name</label>
+                                <input class="form-control" type="text" id="hotelname_create" name="HotelName" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" id="hotelcity_create" name="HotelCity" placeholder="" required="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Street</label>
+                                <input class="form-control" type="text" id="hotelstreet_create" name="HotelStreet" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" id="hotelphone_create" name="HotelPhone" placeholder="" required="">
+                            </div>
+
+                        </div>
+						<ul id="created_hotel" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+												
+						<div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>3.Update a hotel (id from database required,insert id below, complete all info and click Proceed):</h4>
+								<input class="form-control" type="text" id="hotel_id" name="HotelId" placeholder="" required="">
+                                 <button type="button" class="btn btn-default"  id="update_hotel_button">Proceed</button>
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Hotel name</label>
+                                <input class="form-control" type="text" id="hotelname_update" name="HotelName" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" id="hotelcity_update" name="HotelCity" placeholder="" required="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Street</label>
+                                <input class="form-control" type="text" id="hotelstreet_update" name="HotelStreet" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" id="hotelphone_update" name="HotelPhone" placeholder="" required="">
+                            </div>
+						</div>
+						<ul id="updated_hotel" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+						<div class="row" >
+                            !<div class="col-lg-6 form-group">
+                                <h4>4.Delete a specified hotel by id:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_id_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Id</label>
+                                <input class="form-control" type="text" id="id_hotel_delete" name="idHotelDelete" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="hotel_deleted" style=" border: 1px solid black"></ul>
+						
+						<div class="row" >
+                            <div class="col-lg-6 form-group">
+                                <h4>5.Delete all system hotels:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_all_hotels">Proceed</button>
+                            </div>
+                        </div>	
+						
+						<ul id="deleted_all_hotels_message" style="border: 1px solid black"></ul>
+						
+						
+	   
+	</section>
+	
+	
+    <!-- //banner-bottom -->
+	<section class="banner-bottom py-5">
+		<h3 align = "center"> SECTION FOR ADMINISTRATING ROOMS</h3>
+		<ul id="nothing2" style="border: 3px solid black"></ul>
+		
+		                <div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>1.Show all rooms:</h4>
+                                 <button type="button" class="btn btn-default"  id="findall_rooms_button">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="rooms" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+	
+		                <div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>2.Create a new room for a specified hotel:</h4>
+                                 <button type="button" class="btn btn-default"  id="create_room_button">Proceed</button>
+                            </div>
+                        </div>
+						
+						<div class="row">
+						     <div class="col-lg-6 form-group">
+                                <label>RoomType (mandatory) ["PremiumRoom" "ConferenceRoom" or "RegularRoom"]</label>
+                                <input class="form-control" type="text" id="roomtype" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>HotelId</label>
+                                <input class="form-control" type="text" id="hotel_id_room" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Price per Night</label>
+                                <input class="form-control" type="number" id="price_room" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label>Floor</label>
+                                <input class="form-control" type="number" id="floor_room" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Room Number</label>
+                                <input class="form-control" type="number" id="number_room" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Capacity</label>
+                                <input class="form-control" type="number" id="capacity_room" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label>Free or no("true" or "false")</label>
+                                <input class="form-control" type="text" id="free_room" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+											
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="balcony_label">Balcony("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="balcony" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="roomservice_label">RoomService("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="roomservice" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label style="display: none;" id="spa_label">Spa("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="spa" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="projector_label">Projector("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="projector" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="leatherseats_label">LeatherSeats("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="leatherseats" name="PricePerNight" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="matrimonialbad_label">Matrimonial Bad("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="matrimonialbad" name="HotelId" placeholder="" required="">
+                            </div>
+     
+                        </div>
+						<button type="button" class="btn btn-default"  id="create_room_button_final">Create Room</button>
+						<ul id="room_created" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+						
+						<div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>2.Update a room by id:</h4>
+                                 <button type="button" class="btn btn-default"  id="update_room_button">Proceed</button>
+                            </div>
+                        </div>
+						
+						<div class="row">
+							<div class="col-lg-6 form-group">
+                                <label>RoomType</label>
+                                <input class="form-control" type="text" id="roomtype_update" name="HotelId" placeholder="" required="">
+                            </div>
+						     <div class="col-lg-6 form-group">
+                                <label>Room Id </label>
+                                <input class="form-control" type="number" id="roomid" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>HotelId</label>
+                                <input class="form-control" type="text" id="hotel_id_room_update" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Price per Night</label>
+                                <input class="form-control" type="number" id="price_room_update" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label>Floor</label>
+                                <input class="form-control" type="number" id="floor_room_update" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Room Number</label>
+                                <input class="form-control" type="number" id="number_room_update" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Capacity</label>
+                                <input class="form-control" type="number" id="capacity_room_update" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label>Free or no("true" or "false")</label>
+                                <input class="form-control" type="text" id="free_room_update" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+											
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="balcony_label_update">Balcony("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="balcony_update" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="roomservice_label_update">RoomService("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="roomservice_update" name="PricePerNight" placeholder="" required="">
+                            </div>
+							<div class="col-lg-6 form-group">
+                                <label style="display: none;" id="spa_label_update">Spa("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="spa_update" name="Floor" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="projector_label_update">Projector("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="projector_update" name="HotelId" placeholder="" required="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="leatherseats_label_update">LeatherSeats("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="leatherseats_update" name="PricePerNight" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label style="display: none;" id="matrimonialbad_label_update">Matrimonial Bad("true of false")</label>
+                                <input class="form-control" type="text" style="display: none;" id="matrimonialbad_update" name="HotelId" placeholder="" required="">
+                            </div>
+     
+                        </div>
+						<button type="button" class="btn btn-default"  id="update_room_button_final">Update Room</button>
+						<ul id="room_updated" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+						<div class="row" >
+                            !<div class="col-lg-6 form-group">
+                                <h4>4.Delete a specified room by id:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_id_room_button">Proceed</button>
+                            </div>
+                        </div>	
+						<div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Id</label>
+                                <input class="form-control" type="text" id="id_room_delete" name="idRoomDelete" placeholder="" required="">
+                            </div>
+                        </div>
+						
+						<ul id="room_deleted" style=" border: 1px solid black"></ul>
+				
+						<div class="row" >
+                            <div class="col-lg-6 form-group">
+                                <h4>5.Delete all system rooms:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_all_rooms">Proceed</button>
+                            </div>
+                        </div>	
+						
+						<ul id="deleted_all_rooms_message" style="border: 1px solid black"></ul>
+						
+	   
+	</section>
+	
+	<section class="banner-bottom py-5">
+		<h3 align = "center"> SECTION FOR NOTIFY SYSTEM USERS</h3>
+		<ul id="nothing2" style="border: 3px solid black"></ul>
+		
+		                <div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>Check for free rooms and notify users by observer DP:</h4>
+                                 <button type="button" class="btn btn-default"  id="notify_users">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="news" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+		
+						
+	   
+	</section>
+	
+	<section class="banner-bottom py-5">
+		<h3 align = "center"> SECTION FOR ADMINISTRATING RESERVATIONS</h3>
+		<ul id="nothing2" style="border: 3px solid black"></ul>
+		
+		                <div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>Check System Reservations:</h4>
+                                 <button type="button" class="btn btn-default"  id="reservations_check">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="reservations" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+						
+						<div class="row" align = "center">
+                            <div class="col-lg-6 form-group">
+                                <h4>Delete all System Reservations:</h4>
+                                 <button type="button" class="btn btn-default"  id="delete_reservations">Proceed</button>
+                            </div>
+                        </div>
+						<ul id="deleted_reservations" style="margin: 15px; border: 1px solid black" align = "center"></ul>
+		
+						
+	   
+	</section>
+    <!-- footer -->
+    <footer class="footer-content text-center py-5">
+        <div class="container py-md-3">
+            <!-- logo -->
+            <h2 class="logo2 text-center">
+                <a href="index.html">
+                    Hotel Management System
+                </a>
+            </h2>
+            <!-- //logo -->
+            <!-- address -->
+            <div class="contact-left-footer mt-md-4">
+                <ul>
+                    <li>
+                        <p>
+                            <span class="fa fa-map-marker mr-2"></span>Cluj-Napoca
+                        </p>
+                    </li>
+                    <li class="mx-4">
+                        <p>
+                            <span class="fa fa-phone mr-2"></span>+40 746 65 60 76.
+                        </p>
+                    </li>
+                    <li>
+                        <p class="text-wh">
+                            <span class="fa fa-envelope-open mr-2"></span>
+                            <a href="mailto:info@example.com">Calacean.Ionut.98@gmail.com</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!-- //address -->
+            <!-- social icons -->
+            <div class="footer-w3pvt-copy-social my-4">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook-square"></span>
+                        </a>
+                    </li>
+                    <li class="mx-2">
+                        <a href="#">
+                            <span class="fa fa-twitter-square"></span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="fa fa-google-plus-square"></span>
+                        </a>
+                    </li>
+                    <li class="mx-2">
+                        <a href="#">
+                            <span class="fa fa-linkedin-square"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-rss-square"></span>
+                        </a>
+                    </li>
+                    <li class="ml-2">
+                        <a href="#">
+                            <span class="fa fa-pinterest-square"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //social icons -->
+            <!-- copyright -->
+            <div class="w3layouts-copy text-center">
+                <p class="text-da">© 2020 Hotel Management System. All rights reserved | Design by IonutCalacean, templete taken from
+                    <a href="http://w3layouts.com/">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+              <!-- move top icon -->
+			 <div class="move-top text-center mt-3">
+            <a href="#home" class="move-top"><span class="fa fa-angle-double-up" aria-hidden="true"></span></a>
+			</div>
+			<!-- //move top icon -->
+        </div>
+    </footer>
+    <!-- //footer -->
+
+
+
+
+</body>
+
+</html>

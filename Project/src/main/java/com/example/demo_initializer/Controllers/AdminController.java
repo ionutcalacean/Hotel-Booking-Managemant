@@ -29,6 +29,7 @@ public class AdminController {
      * @return lista cu toti adminii din baza de date
      */
     @GetMapping(value="/getall")
+    @CrossOrigin(origins = "*")
     public List<Admin> getall()
     {
         return adminRepository.findAll();
@@ -41,6 +42,7 @@ public class AdminController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
     @PostMapping(value="/create")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> create(@RequestParam String username, @RequestParam String password)
     {
         Admin foo = adminRepository.findById(username)
@@ -48,7 +50,7 @@ public class AdminController {
         if(foo != null)
         {
             return new ResponseEntity<String>(
-                    "username already in use",
+                    "\"username already in use\"",
                     HttpStatus.BAD_REQUEST);
         }
         Admin admin = new Admin(username,password);
@@ -56,7 +58,7 @@ public class AdminController {
         adminRepository.save(admin);
 
         return new ResponseEntity<>(
-                "Admin added succesfull!",
+                "\"Admin added succesfull!\"",
                 HttpStatus.OK);
     }
 
@@ -67,6 +69,7 @@ public class AdminController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
      */
     @PutMapping(value = "/update/{username}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Admin newAdmin, @PathVariable String username)
     {
         Admin foo = adminRepository.findById(username).orElse(null);
@@ -76,13 +79,13 @@ public class AdminController {
             foo.setUsername(newAdmin.getUsername());
             foo.setPassword(newAdmin.getPassword());
             adminRepository.save(foo);
-            return new ResponseEntity<>("Admin updated successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Admin updated successful!\"",HttpStatus.OK);
         }
         else
         {
             newAdmin.setUsername(username);
             adminRepository.save(newAdmin);
-            return new ResponseEntity<>("Admin not found, but addded to database successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Admin not found, but addded to database successful!\"",HttpStatus.OK);
         }
     }
 
@@ -92,16 +95,17 @@ public class AdminController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping("/deletebyid/{username}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> deleteEmployee(@PathVariable String username) {
 
         Admin foo = adminRepository.findById(username).orElse(null);
         if(foo!= null)
         {
             adminRepository.deleteById(username);
-            return new ResponseEntity<>("Admin deleted successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Admin deleted successful!\"",HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("Admin not found, try other username!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Admin not found, try other username!\"",HttpStatus.BAD_REQUEST);
 
     }
 
@@ -110,11 +114,12 @@ public class AdminController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
     @DeleteMapping(value="/deleteall")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> deleteall()
     {
         adminRepository.deleteAll();
 
-        return new ResponseEntity<>("All admins deleted!",HttpStatus.OK);
+        return new ResponseEntity<>("\"All admins deleted!\"",HttpStatus.OK);
     }
 
     /**
@@ -123,12 +128,26 @@ public class AdminController {
      * @return datele adminului
      */
     @GetMapping(value = "/findByUsername")
+    @CrossOrigin(origins = "*")
     public Admin findByUsername(@RequestParam String username)
     {
         return adminRepository.findByUsername(username);
     }
 
 
+    @GetMapping(value = "/login")
+    @CrossOrigin(origins = "*")
+    public Admin login(@RequestParam String username, @RequestParam String password)
+    {
+        List<Admin> users = adminRepository.findAll();
+
+        for(Admin u:users)
+        {
+            if(u.getUsername().equals(username) && u.getPassword().equals(password))
+                return u;
+        }
+        return null;
+    }
 
 
 

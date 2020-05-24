@@ -27,6 +27,7 @@ public class HotelController {
      * @return lista cu toate hotelurile
      */
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
+    @CrossOrigin(origins = "*")
     public List<Hotel> getall() {
         return hotelRepository.findAll();
     }
@@ -37,13 +38,14 @@ public class HotelController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
     @PostMapping(value = "/create")
+    @CrossOrigin(origins = "*")
     public @ResponseBody
     ResponseEntity<String> create(@RequestBody Hotel hotel)
     {
         hotelRepository.save(hotel);
 
         return new ResponseEntity<>(
-                "Hotel added succesfull: "+ hotel.getHotelName()+" S!",
+                "\"Hotel added succesfull: "+ hotel.getHotelName()+" !\"",
                 HttpStatus.OK);
     }
     /**
@@ -53,6 +55,7 @@ public class HotelController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
      */
     @PutMapping(value = "/update/{id}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Hotel hotel , @PathVariable  Long id)
     {
         Hotel foo= hotelRepository.findById(id).orElse(null);
@@ -63,13 +66,13 @@ public class HotelController {
            foo.setPhone(hotel.getPhone());
            foo.setStreet(hotel.getStreet());
            hotelRepository.save(foo);
-            return new ResponseEntity<>("Hotel successful updated!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Hotel successful updated!\"",HttpStatus.OK);
         }
         else
         {
             hotel.setHotelId(id);
             hotelRepository.save(hotel);
-            return new ResponseEntity<>("Hotel not found, but added to database successful",HttpStatus.OK);
+            return new ResponseEntity<>("\"Hotel not found, but added to database successful\"",HttpStatus.OK);
         }
 
     }
@@ -80,16 +83,17 @@ public class HotelController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value= "/deletebyid/{id}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
         Hotel foo = hotelRepository.findById(id).orElse(null);
         if(foo!= null)
         {
             hotelRepository.deleteById(id);
-            return new ResponseEntity<>("Hotel deleted successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Hotel deleted successful!\"",HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("Hotel not found, try other  hotel id!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Hotel not found, try other  hotel id!\"",HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -97,11 +101,12 @@ public class HotelController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value = "/deleteall")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> deleteall()
     {
         hotelRepository.deleteAll();
 
-        return new ResponseEntity<>( "All hotels deleted!", HttpStatus.OK);
+        return new ResponseEntity<>( "\"All hotels deleted!\"", HttpStatus.OK);
     }
 
     /**
@@ -110,6 +115,7 @@ public class HotelController {
      * @return lista de hoteluri din acel oras
      */
     @GetMapping(value = "/findByCity")
+    @CrossOrigin(origins = "*")
     public List<Hotel> findByCity(@RequestParam String city)
     {
         List<Hotel> result =  hotelRepository.findByCity(city);
@@ -127,6 +133,7 @@ public class HotelController {
      * @return
      */
     @GetMapping(value = "/findBySearchString")
+    @CrossOrigin(origins = "*")
     public List<Hotel> findBySearchString(@RequestParam String searchString)
     {
         List<Hotel> result = new ArrayList<Hotel>();

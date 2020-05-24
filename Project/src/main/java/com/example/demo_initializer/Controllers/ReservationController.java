@@ -30,6 +30,7 @@ public class ReservationController {
      * @return lista cu toate rezervarile existente in baza de date
      */
     @RequestMapping(value="/getall",method= RequestMethod.GET)
+    @CrossOrigin(origins = "*")
     public List<Reservation> getAll()
     {
 
@@ -42,6 +43,7 @@ public class ReservationController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea crearii
      */
     @RequestMapping(value = "/create",method=RequestMethod.POST)
+    @CrossOrigin(origins = "*")
     public @ResponseBody
     ResponseEntity<String> create(@RequestBody Reservation reservation )
     {
@@ -71,12 +73,12 @@ public class ReservationController {
             try {
                 reservationRepository.save(reservation);
             } catch (DataIntegrityViolationException e) {
-                return new ResponseEntity<>("Data intergrity Violation Exception!", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("\"Data intergrity Violation Exception!\"", HttpStatus.BAD_REQUEST);
             }
 
-            return new ResponseEntity<>("Booking successful added to database!", HttpStatus.OK);
+            return new ResponseEntity<>("\"Booking successful added to database!\"", HttpStatus.OK);
         }
-        else return new ResponseEntity<>("Room not free in this period!", HttpStatus.OK);
+        else return new ResponseEntity<>("\"Room not free in this period!\"", HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -86,6 +88,7 @@ public class ReservationController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea modificarii
      */
     @PutMapping(value = "/update/{id}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> update(@RequestBody Reservation reservation , @PathVariable  Long id)
     {
         Reservation foo= reservationRepository.findById(id).orElse(null);
@@ -95,13 +98,13 @@ public class ReservationController {
             foo.setInDate(reservation.getInDate());
             foo.setOutDate(reservation.getOutDate());
             reservationRepository.save(foo);
-            return new ResponseEntity<>("Booking successful updated!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Booking successful updated!\"",HttpStatus.OK);
         }
         else
         {
             reservation.setId(id);
             reservationRepository.save(reservation);
-            return new ResponseEntity<>("Booking not found, but added to database successful",HttpStatus.OK);
+            return new ResponseEntity<>("\"Booking not found, but added to database successful\"",HttpStatus.OK);
         }
 
     }
@@ -112,16 +115,17 @@ public class ReservationController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping(value= "/deletebyid/{id}")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> delete(@PathVariable long id)
     {
         Reservation foo = reservationRepository.findById(id).orElse(null);
         if(foo!= null)
         {
             reservationRepository.deleteById(id);
-            return new ResponseEntity<>("Reservation deleted successful!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Reservation deleted successful!\"",HttpStatus.OK);
         }
         else
-            return new ResponseEntity<>("Reservation not found, try other id!",HttpStatus.OK);
+            return new ResponseEntity<>("\"Reservation not found, try other id!\"",HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -129,10 +133,29 @@ public class ReservationController {
      * @return Un raspuns sub forma de string si un HttpStatus pentru confirmarea stergerii
      */
     @DeleteMapping("/deleteall")
+    @CrossOrigin(origins = "*")
     public @ResponseBody ResponseEntity<String> deleteAll()
     {
         reservationRepository.deleteAll();
 
-        return new ResponseEntity<>("All bookings deleted!" , HttpStatus.OK);
+        return new ResponseEntity<>("\"All bookings deleted!\"" , HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/getallUsername/{username}",method= RequestMethod.GET)
+    @CrossOrigin(origins = "*")
+    public List<Reservation> getMyBooks(@PathVariable String username)
+    {
+        List<Reservation> allRes= reservationRepository.findAll();
+
+        List<Reservation> returns = new ArrayList<Reservation>();
+
+        for(Reservation r : allRes)
+        {
+            if(r.getUser().getUsername().equals(username))
+            {
+                returns.add(r);
+            }
+        }
+        return returns;
     }
 }
