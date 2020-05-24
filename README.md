@@ -1,5 +1,8 @@
 # DOCUMENTATIE Hotel Management System
-From students to students
+Nume student: Calacean Ionut
+CTI Seria B
+Grupa: 30239
+Profesor indrumator: Paul Stanescu
 
 # 1.Descrierea problemei
 In contextul anului 2020, tehnologizarea business-urilor este vitala, un business fara o tehnologie solida in spate e sortit unui esec iminent. Atfel problema propusa spre rezolvare este facilizarea unui sistem de management pentru un lant de hotel-uri astfel incat toate activitatile sa aiba loc online. Problema presupune implementarea unei aplicatii web-based care sa permita manager-ului hotelului sa desfasoare toate activitatile online, print-un GUI interactiv, care sa usureze exponential necesitatea folosirii pixului si a hartiei pentru a gestiona afacerea sub un control permanent. Aplicatia ofera managerului puterea si flexibilitatea de a controla tot sistemul dintr-un mediu online singular, insa aceasta este destinata si utilizatorilor de rand, oferind un acces limitat la mediu. 
@@ -41,6 +44,11 @@ Am ales impartirea functionalitatii aplicatiei in 2 mari parti: partea utilizato
 ## Diagrama bazei de date
 
 ![database](https://user-images.githubusercontent.com/49992235/77261119-def85e00-6c94-11ea-9357-47297dd4271c.png)
+
+## Diagrama de obiecte
+
+![class](https://user-images.githubusercontent.com/49992235/82756702-6de43c80-9de4-11ea-8db0-3277b1bc4e3a.png)
+
 
 # 4. Analiza problemei, modelare, scenarii, cazuri de utilizare
 
@@ -130,3 +138,21 @@ Dupa cum se observa in imagine, observatorii concreti sunt utilizatorii, care im
 - Aceasta diagrama de secventa prezinta flow-ul sistemului in cazul in care un client se logheaza cu succes in sistemul de management al regimului hotelier, cauta prin introducerea unui String in textbox-ul dedicat cautarii numele unui hotel sau numele mai multor hoteluri, si selecteaza cu succes o camera libera intr-o perioada aleasa.
 
 ![Sequence Diagram](https://user-images.githubusercontent.com/49992235/81302919-af09ec00-9083-11ea-92c6-6eb24ba2f44e.png)
+
+
+# 5. Rezultate
+- Pe baza acestei aplicatii se poate gestiona cu usurinta un lant hotelier de catre un manager, avand control total asupra utilizatorilor, hotelurilor, camerelor si rezevarilor. De asemenea aplicatia permite si o utilizare facila pentru utilizatori, pentru cautarea de camere si
+hoteluri si pentru rezervarile efectuate.
+- In aceasta sectiune voi prezenta unele imagini din UI-ul rezultat in finalul dezvoltarii aplicatiei.
+- Pentru partea de login:  
+![ui_login](https://user-images.githubusercontent.com/49992235/82756780-ef3bcf00-9de4-11ea-8b0e-e7dc47fc528a.png)
+- Pentru partea de client: 
+![ui_client](https://user-images.githubusercontent.com/49992235/82756791-fbc02780-9de4-11ea-8dd0-d497e86321d9.png)
+- Pentru patrea de administrator:
+![ui_admin](https://user-images.githubusercontent.com/49992235/82756797-08448000-9de5-11ea-80e6-42db49b01355.png)
+- Pentru partea de inregistrare:
+![ui_register](https://user-images.githubusercontent.com/49992235/82756805-1b575000-9de5-11ea-8826-d04798c17544.png)
+
+# 6.Concluzii
+ Ca o concluzie la acest proiect, se observa importanta incontestabila a utilizatii bazelor de date si a conexiunii Java cu bazele de date relationale prin intermediul Hibernate. De asemenea functionalitatile puse la dispozitia noastra de catre Spring Boot ofera o maleabilitate solida proiectului, JPA asigurand in spate consistenta intre obiecte si tabele din baza de date. Mockito a fost de mare ajutor in testarea functionalitati pe partea de backend, pentru a avea o siguranta crescuta la legarea functionalitatii create de partea de frontend. Jquery si Ajax au ajutat la inglobarea proiectului intr-o interfata user-friendly creata cu html. 
+  Ca dezvoltari ulterioare, sistemele de management al lanturilor hoteliere sunt in general create pentru a putea fi dezvoltate datorita faptului ca turismul este intr-o crestere continua in implacabila. Astfel o multime de functionalitati pot fi adaugate ulterior in proiect fara a afecta functionalitatea curenta. Spre exemplu, legarea cu partea de restaurant a hotelului, care sa ofere clientilor o experienta cat mai facila pentru a accesa roomservice, direct din aplicatie, sau rezervari la spa.
