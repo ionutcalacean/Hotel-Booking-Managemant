@@ -1,8 +1,8 @@
 # DOCUMENTATIE Hotel Management System
-Nume student: Calacean Ionut
-CTI Seria B
-Grupa: 30239
-Profesor indrumator: Paul Stanescu
+- Nume student: Calacean Ionut
+- CTI Seria B
+- Grupa: 30239
+- Profesor indrumator: Paul Stanescu
 
 # 1.Descrierea problemei
 In contextul anului 2020, tehnologizarea business-urilor este vitala, un business fara o tehnologie solida in spate e sortit unui esec iminent. Atfel problema propusa spre rezolvare este facilizarea unui sistem de management pentru un lant de hotel-uri astfel incat toate activitatile sa aiba loc online. Problema presupune implementarea unei aplicatii web-based care sa permita manager-ului hotelului sa desfasoare toate activitatile online, print-un GUI interactiv, care sa usureze exponential necesitatea folosirii pixului si a hartiei pentru a gestiona afacerea sub un control permanent. Aplicatia ofera managerului puterea si flexibilitatea de a controla tot sistemul dintr-un mediu online singular, insa aceasta este destinata si utilizatorilor de rand, oferind un acces limitat la mediu. 
